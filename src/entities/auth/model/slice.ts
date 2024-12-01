@@ -22,8 +22,12 @@ export const authSlice = createSlice({
       store.accessToken = accessToken;
       store.refreshToken = refreshToken;
     },
+    clearTokens: (store): void => {
+      store.accessToken = '';
+      store.refreshToken = '';
+    },
   },
 });
 
-export const { addTokens } = authSlice.actions;
+export const { addTokens, clearTokens } = authSlice.actions;
 export const authReducer = authSlice.reducer;
