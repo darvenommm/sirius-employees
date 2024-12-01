@@ -1,3 +1,3 @@
 # Sirius project to study React
 
-Run with writing "bun run dev"
+Run with writing "bun dev"
