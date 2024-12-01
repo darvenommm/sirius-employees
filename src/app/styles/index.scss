@@ -1,3 +1,15 @@
-p {
-  color: blue;
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-y: scroll;
+
+  margin: 0;
 }

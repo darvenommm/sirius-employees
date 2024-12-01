@@ -1,0 +1,25 @@
+.newsPosts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  background-color: rgb(132, 188, 241);
+
+  & > * {
+    margin: 0;
+  }
+}
+
+.createdAt {
+  align-self: end;
+}

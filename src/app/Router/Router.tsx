@@ -7,6 +7,8 @@ import { LoginPage } from '@pages/LoginPage';
 import { ProfilePage } from '@pages/ProfilePage';
 import { ServicesPage } from '@pages/ServicesPage';
 import { ServicePage } from '@pages/ServicePage';
+import { IsAuthenticatedGuard } from './guards/IsAuthenticatedGuard';
+import { IsNotAuthenticatedGuard } from './guards/IsNotAuthenticatedGuard';
 
 export const Router = (): JSX.Element => {
   return (
@@ -14,11 +16,15 @@ export const Router = (): JSX.Element => {
       <Routes>
         <Route element={<LayoutPage />}>
           <Route path={paths.home} element={<HomePage />} />
-          <Route path={paths.login} element={<LoginPage />} />
-          <Route path="/user/:userId" element={<ProfilePage />} />
-          <Route path={paths.services}>
-            <Route index element={<ServicesPage />} />
-            <Route path=":serviceId" element={<ServicePage />} />
+          <Route element={<IsNotAuthenticatedGuard />}>
+            <Route path={paths.login} element={<LoginPage />} />
+          </Route>
+          <Route element={<IsAuthenticatedGuard />}>
+            <Route path={paths.profile} element={<ProfilePage />} />
+            <Route path={paths.services}>
+              <Route index element={<ServicesPage />} />
+              <Route path=":serviceId" element={<ServicePage />} />
+            </Route>
           </Route>
         </Route>
       </Routes>

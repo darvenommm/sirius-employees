@@ -3,5 +3,5 @@ export const paths = {
   services: '/services',
   service: (serviceId: number | string): string => `/services/${serviceId}`,
   login: '/login',
-  profile: (userId: number | string) => `/user/${userId}`,
+  profile: '/user/me',
 } as const;
