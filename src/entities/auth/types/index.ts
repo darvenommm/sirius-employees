@@ -10,6 +10,7 @@ export interface LoginResult {
 
 export interface Profile {
   readonly firstName: string;
+  readonly lastName: string;
   readonly username: string;
   readonly email: string;
   readonly image: string;

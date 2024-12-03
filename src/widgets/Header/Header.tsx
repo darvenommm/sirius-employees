@@ -1,25 +1,30 @@
 import { NavLink } from 'react-router-dom';
 import { Button } from '@consta/uikit/Button';
+import { useSelector } from 'react-redux';
 
 import { Navigation } from '@shared/ui/Navigation';
 import { ExitButton } from '@features/ExitButton';
 import { LinkParameters } from '@shared/types/routing';
 import { paths } from '@shared/constants/routing';
+import { selectFullName, selectIsAuthenticated } from '@entities/auth';
 
 import classes from './Header.module.scss';
 
-const authLinks: LinkParameters[] = [
-  {
-    title: 'ФИО',
-    path: paths.profile,
-  },
-  {
-    title: 'Вход',
-    path: paths.login,
-  },
-];
-
 export const Header = (): JSX.Element => {
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const fullName = useSelector(selectFullName);
+
+  const authLinks: LinkParameters[] = [
+    {
+      title: isAuthenticated ? fullName : 'ФИО',
+      path: paths.profile,
+    },
+    {
+      title: 'Вход',
+      path: paths.login,
+    },
+  ];
+
   return (
     <header className={classes.header}>
       <Navigation />

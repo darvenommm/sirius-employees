@@ -9,6 +9,8 @@ export const selectAccessToken = createSelector([selectAuth], (auth): string => 
 
 export const selectRefreshToken = createSelector([selectAuth], (auth): string => auth.refreshToken);
 
+export const selectFullName = createSelector([selectAuth], (auth): string => auth.fullName);
+
 export const selectIsAuthenticated = createSelector([selectAccessToken], (accessToken): boolean =>
   Boolean(accessToken),
 );
