@@ -7,7 +7,8 @@ import { Loader } from '@consta/uikit/Loader';
 import { Text } from '@consta/uikit/Text';
 import { TextField } from '@consta/uikit/TextFieldCanary';
 import { paths } from '@shared/constants/routing';
-import { addTokens, login } from '@entities/auth';
+import { addFullName, addTokens, login } from '@entities/auth';
+import { getProfile } from '@entities/auth/api/getProfile';
 
 import classes from './LoginForm.module.scss';
 
@@ -51,8 +52,11 @@ export const LoginForm = (): JSX.Element => {
 
     try {
       const loginData = await login({ username, password });
+      const user = await getProfile(loginData.accessToken);
+
       setStatus(LoginFormStatus.NONE);
       dispatcher(addTokens(loginData));
+      dispatcher(addFullName(`${user.firstName} ${user.lastName}`.trim()))
       navigate(paths.home);
     } catch {
       setStatus(LoginFormStatus.ERROR);
